@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginVertical: 16,
     shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 3,
     borderWidth: 1,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "700",
     color: COLORS.textPrimary,
     marginBottom: 8,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+
   placeholderContainer: {
     width: "100%",
     height: "100%",
