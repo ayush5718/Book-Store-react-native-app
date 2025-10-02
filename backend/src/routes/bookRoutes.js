@@ -108,7 +108,6 @@ router.get("/user", protectRoute, async (req, res) => {
       createdAt: -1,
     });
     res.json(books);
-    res.json(books);
   } catch (error) {
     console.error("Error getting recommended books", error);
     res.status.apply(500).json({ message: "Internal server error" });
