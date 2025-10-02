@@ -56,7 +56,7 @@ router.get("/", protectRoute, async (req, res) => {
       books,
       currentPage: page,
       totalBooks: totalBookCount,
-      totalPages: matchMedia.ceil(totalBookCount / limit),
+      totalPages: Math.ceil(totalBookCount / limit),
     });
     // const books = await Book.find().sort({ createdAt: -1 }); //books in ascending order
   } catch (error) {
