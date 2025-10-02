@@ -173,6 +173,7 @@ export default function Create() {
       setLoading(false);
     }
   };
+
   const renderRatingPicker = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -192,7 +193,6 @@ export default function Create() {
     return <View style={styles.ratingContainer}>{stars}</View>;
   };
 
-  console.log(user.id);
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
