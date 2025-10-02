@@ -116,6 +116,27 @@ export default function Index() {
         key={(item) => item._id}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>BookWorm 🪱</Text>
+            <Text style={styles.headerSubtitle}>
+              Discover great reads from the community👇
+            </Text>
+          </View>
+        }
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Ionicons
+              name="book-outline"
+              size={60}
+              color={COLORS.textSecondary}
+            />
+            <Text style={styles.emptyText}>No recommendations yet</Text>
+            <Text style={styles.emptySubtext}>
+              Be the first to share a book!
+            </Text>
+          </View>
+        }
       />
     </View>
   );
