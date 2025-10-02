@@ -16,9 +16,15 @@ router.post("/", protectRoute, async (req, res) => {
       return res.status(400).json({ message: "Please provide all feilds" });
     }
 
+    // Validate the image looks like a data URL (basic)
+    if (typeof image !== "string" || !image.startsWith("data:")) {
+      return res
+        .status(400)
+        .json({ message: "Invalid image format. Expecting data URL." });
+    }
     // upload the image to cloudinary
     const uploadResponse = await cloudinary.uploader.upload(image);
-    const imageUrl = await uploadResponse.secure_url; // getting the saved image url
+    const imageUrl = uploadResponse.secure_url; // getting the saved image url
 
     // defining the new data for saving new book
     const newBook = new Book({
