@@ -29,7 +29,7 @@ export default function Signup() {
   const handleSignUp = async () => {
     const result = await register(username, email, password);
     if (!result.success) {
-      Alert.alert("Error", result.error);
+      Alert.alert("Error", result.message);
     }
     console.log(user);
     console.log(token);

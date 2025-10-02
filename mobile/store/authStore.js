@@ -35,7 +35,8 @@ export const useAuthStore = create((set) => ({
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
-      console.log("Error registering user", error);
+      console.log("Error registering user", error.message);
+
       return { success: false, message: error?.message };
     }
   },
@@ -91,7 +92,8 @@ export const useAuthStore = create((set) => ({
     } catch (error) {
       set({ isLoading: false });
       console.log("Error logging in", error);
-      return { success: false, message: error?.message };
+      console.log("catch error message", error.message);
+      return { success: false, message: error.message };
     }
   },
 }));
