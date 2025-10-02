@@ -144,7 +144,6 @@ export default function Create() {
       const response = await fetch(`${API_URL}/api/books`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
