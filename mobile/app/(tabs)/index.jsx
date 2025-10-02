@@ -1,4 +1,11 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  RefreshControl,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../../store/authStore";
 import styles from "../../assets/styles/home.styles";
@@ -7,6 +14,7 @@ import { API_URL } from "../../constants/api";
 import { Ionicons } from "@expo/vector-icons";
 import COLORS from "../../constants/colors";
 import { formatPublishDate } from "../../lib/utils";
+import Loader from "../../components/Loader";
 export default function Index() {
   const { token } = useAuthStore();
 
@@ -107,7 +115,13 @@ export default function Index() {
     </View>
   );
 
-  const handleLoadMore = async () => {};
+  const handleLoadMore = async () => {
+    if (hasMore && !loading && !refreshing) {
+      await fetchBooks(page + 1);
+    }
+  };
+
+  if (loading) return <Loader />;
   return (
     <View style={styles.container}>
       <FlatList
@@ -116,6 +130,16 @@ export default function Index() {
         key={(item) => item._id}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => fetchBooks(1, true)}
+            colors={[COLORS.primary]}
+            tintColor={COLORS.primary}
+          />
+        }
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.1}
         ListHeaderComponent={
           <View style={styles.header}>
             <Text style={styles.headerTitle}>BookWorm 🪱</Text>
@@ -136,6 +160,15 @@ export default function Index() {
               Be the first to share a book!
             </Text>
           </View>
+        }
+        ListFooterComponent={
+          hasMore && books.length > 0 ? (
+            <ActivityIndicator
+              size="small"
+              color={COLORS.primary}
+              style={styles.footerLoader}
+            />
+          ) : null
         }
       />
     </View>
