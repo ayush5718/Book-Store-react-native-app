@@ -39,10 +39,11 @@ export default function TabLayout() {
         options={{
           title: "Create",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="add-circle-outline" size={size} color={color} />
+            <Ionicons name="create-outline" size={size} color={color} />
           ),
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{

@@ -47,8 +47,9 @@ export const useAuthStore = create((set) => ({
       const userJson = await AsyncStorage.getItem("user");
       const user = userJson ? JSON.parse(userJson) : null;
 
-      set({ token, user });
+      set({ token, user, hydrated: true });
     } catch (error) {
+      set({ hydrated: true });
       console.log("Error checking auth", error);
     }
   },
